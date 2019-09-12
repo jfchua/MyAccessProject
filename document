@@ -1,0 +1,821 @@
+ 
+
+ 
+Table of Contents
+1.	Executive Summary	2
+1.1 	Issue	2
+1.2	Anticipated Outcomes	3
+1.3	Justification	4
+2.	Problem Definition	6
+2.1 	Problem Statement	6
+3.	Project Goals/Objectives:	6
+4.	Scope of Work	13
+4.1 	Enforce strict governance on workgroup management	13
+4.1 	Certification of Role Owners –	13
+4.3 	Identifying Dormant Accounts –	14
+4.4 	Automation of Manual Reconciliation exercise –	15
+4.5 	Enhanced Access Certification	16
+5.	Feasibility Study	17
+6.	Architecture Design	18
+1.	Enforce Strict Governance on Workgroup Management	20
+2.	Certification of Role Owners	24
+3.	Identifying Dormant Accounts	28
+4.	Automation of Manual Reconciliation	32
+5.	Enhanced Certification Check	36
+7.	System Design & Research	37
+7.1 	Format of Event Log	37
+8.	Timeline of Project	39
+AGILE methodology	39
+9.	Budget	42
+10.	Stakeholders/Beneficiaries:	43
+11.	Key Personnel	43
+12.	Endorsements	43
+10. Appendix	44
+11. Terms & Terminology	44
+13.	References	45
+
+ 
+1.	Executive Summary
+
+
+
+[Fill up]
+
+
+
+
+1.1 	Issue
+Over the years, a vast range of operations relating to Identity and Access Management (IAM) has always been manual intensive which requires the respective personnel in-charge of the operation to cross refer to several platforms to perform their task. Some of the operations include Certification of Roles, Certification of Role Owners and Quarterly Manual Reconciliation Exercise. All of the manual operations will eventually result in huge consumption of both time and effort as well as in a long run, affecting workers productivity.
+While GIC Pte Ltd expands to more clients in its customer base, the volume of their workload will rise and will soon become too much of a challenge to handle – impacting the aspect of governance in Identity and Access Management. In order to better manage the Identity and Access Governance in GIC, consideration have to be taken to implement the system application outlined in this business case for Intermediary System Project.
+
+The following are some of specific issues faced currently: 
+•	User’s Ownership of product still remains tied even after changing department
+•	Dormant accounts residing in the system and yet to be deactivated (Security gap)
+•	Dormant accounts holding on to licenses (wasting resources)
+•	Manual Reconciliation Exercise is manually intensive and time consuming
+•	Number of users in respective applications does not sync with IAM Platform (Source of Truth) 
+•	Lacking in crucial details (e.g. logs) when conducting certification checks
+•	Front-end of IAM Platform is developed with an off-the-shelf product, which is standardized, making modification to the system challenging or might not even be possible
+
+1.2		Anticipated Outcomes
+With a centralized web-based platform like the Intermediary System being implemented, it will resolve the manual intensive labour tasks by taking time-saving cost in consideration. The Intermediary System will be key to help ease processes during manual operations. 
+This system will also provide greater scalability to handle and consolidate by mapping the relationship of the huge volume of data. By mapping the relationship between different attributes of data, it will effectively reduce time spent on cross-referencing across platforms to conduct checks. 
+
+Overview of the Intermediary System
+ 
+
+The end product of the Intermediary System will be designed to ease the following operations: [As shown in the diagram below]
+Functions of system	How the system assist in operations?
+Certification of Role Owners	Maps the relationship of Business Owners to Assets (queried from IAM Platform) and Assets to Access Roles (queried from IRM Platform) into a single table to provide ease when certifying Role Owners.
+Identify Dormant Accounts	Defining a logic (threshold) to identify dormant accounts in applications
+Automating Manual Reconciliation Exercise	Automate Manual Reconciliation Exercise by regularly feeding on .csv files to conduct a comparison (through a logic set) with the IAM Platform, which will be uploaded by respective applications. 
+Enhanced Access Certification	Enhance access certification by attaching an addition field (activity log) of each existing user account. This allow Supervisor to better determine the activeness of a user during certification.
+Enforce strict governance on workgroup management	Identifies roles with 2 members in their workgroup and 1 member happened to be a mover(transfer) or leaver (termination).  Along with setting a logic (threshold) to spot those roles with no action taken even after a notice was sent and display those roles in the Intermediary System.
+
+Users will be faced with a login page for authentication and authorization purposes. Each user will be granted with different set of accesses in the system, based on their assigned task. 
+
+1.3	Justification 
+Currently, the majority of the manual workload is done on the IAM platform by the IAM team and the IAM Operations team. There have been plans to enhance the system by introducing and upgrading core functions which will help lessen the manual workload and introduce more automation processes. However, the current IAM platform has its design restrictions and system limitations, when the dashboard is tempered with, there will be instability in the system. Therefore, the IAM team wants to propose the development and implementation of the Intermediary System which will be integrated together with the current IAM platform and IRM Platform to enhance the efficiency of the manual processes.
+Some of the system enhancement plans which will be affected by system design restriction of IAM and IRM platform were:
+[ ask Felicia what were the plans that were affected system design restriction? Are the functions in the Intermediary System all of them? ] 
+
+
+The estimated manual overhead with the implementation of the Intermediary System are as of follows:
+Functions	Beneficiaries 	Manual Overhead per Operation
+Enforce strict governance on workgroup management	Business Owners, IAM Team	
+Certification of Role Owners 	Business Owners	
+Identifying Dormant Accounts	IAM team and IAM OPS team	
+Automation of Manual Reconciliation 	Business Owner (provide details to OIC), Estelle, Ong Pei Lin, Application OICs	
+Enhanced Access Certification	Supervisors  	
+[Provide stats of how much time each individual spend on task, maybe can provide graphs]
+-	System design restriction: system has limitation which leads to manual overhead
+-	Enhance to existing platform may cause instability if modifications are made
+-	So not on top of existing: separate
+-	Manual overhead: extensive
+-	Things would like to do without enhancing the existing platform
+ 
+2.	Problem Definition
+
+2.1 	Problem Statement
+The Identity and Access Management (IAM) team has been dealing with many of their tasks in manual way. With the workload increasing steadily, it will only be a matter of time before the IAM team gets swamped with multiple manual intensive tasks which only adds on to their daily operations. For example; the IAM team will have to manually perform reconciliation across all 23 departments in GIC to prevent people from gaining backdoor access to any of the company’s assets.
+The IAM team has been looking for a solution to reduce the manual intensity of the workload and increase the automation process as much as possible.
+There are also design restrictions / system limitations on the IAM platform which manages the accesses of every employee in the company. This results in being unable to enhance the system itself and enhance the day-to-day processes. Therefore, we turn to developing a separate system to integrate with the current system to enhance efficiency of the IAM teams’ tasks.
+
+3.	Project Goals/Objectives:
+The objective of the project is to implement a common point where members of IAM team would make use of, to better manage their system and processes as well as to improve work efficiency. The following are the objectives, in which, the benefits the Intermediary System would bring:
+
+Reducing Manual Overheads
+
+The IAM OPS Team and other respective operation in-charge spend huge duration of time, cross-referring to multiple platforms, conducting checks during the Manual Reconciliation Exercise, Certification checks and ORSA. These excessive effort and time wasted on referencing checks could be used for more critical aspects of the operations. With the automation of task and the production of a central platform will significantly reduce the time spent on cross-referencing multiple sources of information. 
+
+
+
+
+
+
+
+
+Minimizing Security Gaps
+
+In every operation, security concerns are always a living issue and the possibly of a system without security loopholes is almost impossible. To safeguard their assets, efforts have to be made to minimize those gaps. 
+
+With implementation of the Intermediary System, the following security gaps will be addressed: 
+
+Dormant account	-	Dormant account flagged will minimize security loopholes of GIC.
+-	Dormant account could be used by attackers to conduct malicious intents
+Role owners	-	Role owners who still possess ownership of application, even after going through the mover process, will be deemed as perilous as the role owner still has the access rights in their possession. 
+User Certification	-	Currently, during user certification, the list of names generated for checks of the respective application only contains the name of users. 
+-	From the forensic soundness point of view, the document is lacking on the critical source of evidence which is the time-stamp of the user’s activity logs
+
+Audit trails	-	By minimizing security gaps, it would make audit trail a smoother process since less vulnerability in the system will be flagged out and system will be compliant to the audit standards
+
+
+Identity and Access Governance
+
+The management of accesses employees have in GIC in one of the primary tasks of the IAM team. By conducting bi-annual and annual checks, depending on the criticality of the assets in GIC, the team makes sure that there are no un-authorized accesses tied to each asset. In addition, the IAM team also prioritizes identity management as one of their tasks. 
+
+Having to deal with New Hires, Movers and Leavers, and Creating, Updating and Terminating their list of accesses respectively can also be huge manual burden to the team. With the proposed intermediary system, the team can automate the process of querying the IAM Platform database for the list of names of an asset to be attested which will significantly reduce the time and energy consumed for each exercise.
+
+
+
+The above non-technical objectives can be achieved through the following technical enhancements the proposed Intermediary System would bring. More details about how each technical enhancement would empower the non-technical objective will be discussed below:
+
+Certification of Role Owners
+ 
+Through this project, we aim to validate the certification of role owners, which means we will query from both the IAM platform and IRM Platform to map the attributes: Business Owner, Assets and Role. The reason for the mapping is due to IRM Platform only having the relationship between Business owner and Assets as well as IAM Platform having the relationship between Assets and Roles. [Shown in the diagram below]
+
+ 
+
+ The outcome is to effectively develop an automated mapping system to check if the role owners are still valid. 
+
+Enforce strict governance on workgroup management
+ 
+At the same time, we will also have to enforce strict governance on workgroup management. There will be a script which runs through the IAM Platform database and identify the roles with 2 members in their workgroup and 1 of the members happened to be a mover (transfer) or leaver (termination). Role review is the process where we will set a certain logical statement to identify roles that are set to non-requestable and has passed the defined threshold of the number of days without any action taken. The system can effectively identify those roles which meets the criteria of the logical statement to further determine the course of action to be taken against those roles.
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+Automation of Manual Reconciliation
+Another objective to be completed throughout this project is to enable the automation of manual reconciliation exercise to reduce the manual intensity of the workload.
+Manual reconciliation is currently conducted quarter annually to perform manual checks to ensure user’s access rights to applications are in-sync with the IAM Platform. This exercise will only be required for applications that are integrated with the IAM Platform in a manual way which accesses have to be provisioned or de-provisioned manually. 
+The reason for performing the Manual Reconciliation Exercise is due to applications integrating with IAM Platform manually due to the incompatibility of the platform to the endpoints. With these applications being manually connected, it implies that it is not possible to automatically sync access rights between IAM Platform with them. 
+
+This might pose some security implications of not being able to revoke user’s access right properly. Consequences of such security threat would be unauthorized access to critical information in the company.
+
+The diagrams below help better illustrate the purpose for the Quarterly Annual Manual Reconciliation Exercise. 
+
+The expected scenario would be, for a user to gain an access right, he/she will be required to go through 2 levels of approval in the IAM platform–Supervisors and Role Owners. Once both levels of approval is cleared, the manual fulfilment team will provision access to the requestor. If the procedure is followed stringently, the numbers of user in the IAM Platform will be corresponding to the number of users reflected in the respective application. [As shown in the diagram below] 
+
+ 
+
+However, in abnormal circumstances, access rights are granted directly from the manual fulfilment team – skipping the 2 levels of approval required in MyAccess. 
+
+The following 2 possible backdoor scenario of such happenings include:
+1.	Business Owner requests fulfilment team to grant access rights a particular user – user needs the access urgently 
+2.	Business Owner requests fulfilment team to remove access rights of a particular user – user no longer needs the access 
+
+ 
+
+When any of the 2 backdoor scenario takes place, IAM Platform being the Source of Truth for access rights, will no longer be reliable. Thus, the reason for the Manual Reconciliation Exercise is provide a corrective solution to drive IAM Platform as the single source of truth regarding user access rights. In addition, another objective would be to identify any security discrepancies in the current access rights granted.
+ 
+ 
+
+Manual Reconciliation Exercise which takes place quarter annually, being at such a manually intensive operation, there is a need for an enhancement in the process to effectively reduce the time-cost spending. Thus, one of the functions the Intermediary System brings would be the automation of the process of Manual Reconciliation Exercise.
+
+Identify Dormant Accounts
+ 
+Next, would be to identify inactive/dormant accounts (threshold will be defined) in the GIC Identity Management platform. 
+
+Dormant accounts are accounts which hold accesses but have yet to login for a period of time (longer than the defined threshold of X number of days)
+
+Once identified, a request ticket will be sent over to IAM platform to notify the respective in-change to remove those accounts from the system. This helps in better account management and minimise security gaps in the systems. 
+
+Some of these accounts may also be holding on to licenses. As there are limited licenses for different software across the company, it is vital to remove the licenses from the dormant accounts so that active accounts which needs the licenses can use them.
+
+Enhanced Access Certification
+The development of the intermediary system also aims to enhance access certification, which is the process of checking if a user should still have access to a certain application. This exercise is carried out once or twice a year, depending on the criticality of the application/asset. The intermediary system will pull out existing users with access to a certain application and provide an additional field, activity time-stamp, to better determine the activeness of a user. Supervisor/Business Owner would make use of this list in the Intermediary System to conduct their certification of accesses. 
+
+
+
+4.	Scope of Work
+4.1 	Enforce strict governance on workgroup management
+  
+•	Program web cache/session/cookie to retrieve data of roles that have been set to non-requestable from the script being run on IAM Platform
+•	Coding of logic (threshold) at the application layer of Intermediary System
+•	Host a database to store identified roles that met the conditions (non-requestable + meet number of days set in threshold)
+•	Creation of the front-end User Interface (UI)  of the Intermediary System to display relevant data for operation purposes
+
+4.1 	Certification of Role Owners –
+ 
+•	Designing an ER diagram with the respective primary and unique keys to create the logic to map the attributes of Business Owners, Asset, and Roles
+•	Querying of IAM Platform and ITSM Platform into tables in the database of the Intermediary System.
+•	Forming application of codes to effectively map the relationship among the attributes
+•	Creation of the front-end of the Intermediary System to display relevant data for operation purposes 
+
+4.3 	Identifying Dormant Accounts –
+ 
+•	Front-End: Create a form to allow downloading of the user list template and uploading of the filled user-list .csv file
+•	Create application layer to effectively retrieve data from a .csv spreadsheet
+•	Justify and determine the number of days to be set as the threshold
+•	Using the decided value X days of threshold, form a logic to identify user accounts which matches the condition of being a dormant account.
+•	Host a database to store identified dormant account which matches the logical condition set on the application layer 
+•	Front-End: Create a table to display all captured dormant accounts  
+
+
+
+
+
+
+
+4.4 	Automation of Manual Reconciliation exercise – 
+ 
+•	Host a database to effectively retrieve data from both the IAM Platform and the application
+•	Front-End: Create a form to allow downloading of the user list template and uploading of the filled user-list .csv file
+•	Create application layer to effectively retrieve data from a .csv spreadsheet and insert the data into Intermediary System Database
+•	Creating of query to retrieve user-list data from IAM Platform 
+•	Create a logical expression to match the numbers of users in IAM Platform and in the applications. 
+•	If numbers do not match, the respective user will be inserted into the database.
+•	Front-end: Data stored in the database, will be displayed on the Front-end to show their discrepancy
+•	Post-action after identifying the extra user: [If numbers do not match, remove the identified user’s access and that user have to go through 2 level of approval again (Not confirmed, the change is too drastic)]
+
+4.5 	Enhanced Access Certification 
+
+-	Talk to TUS creators
+ 
+5.	Feasibility Study
+ 
+6.	Architecture Design 
+This section of the report would cover the architecture design of the Intermediary System.  A system architecture would be a high-level structure of the system design which covers the major functionality and performance requirements in the system. System Architecture will also serve the purpose to identify any constraints, produce more accurate costs, manage changes and help create a better estimated timeline for the project.
+System Architecture will help to satisfy non-functional requirements in terms of the following:
+•	Reliability of the system 
+•	Scalability of the system for future growth
+•	Portability of the system
+•	Availability of the system
+
+System Architecture
+In GIC’s context, a System Architecture would be document required for the mandatory Architecture Review. A System Architecture Review would help to identify potential issues of the proposed architecture to allow room for corrective changes at the earlier phrase of development. 
+The occurrence of the System Architecture Review would take place after the System Architecture Design more or less been confirmed. 
+ 
+To stay aligned with the focus/objective of GIC’s requirements in Architecture Review, some of the pointers to note would be:
+•	Flexibility of System when changes have to be made
+•	Technical Risk of System Architecture
+•	Compliance to GIC’s Technology Standards
+•	Alignment to industry’s best practices and standards
+•	Long-term impact on performance
+•	Well-defined segregation of responsibilities in respective system, sub-system, components 
+•	Address quality of Architecture Design in terms of Performance, Availability, Scalability.
+
+The approach to produce the System Architecture Design of the Intermediary System would be adapting a standardized modelling language, Unified Modelling Language (UML). 
+
+Unified Modelling Language (UML)
+The Unified Modelling Language (UML) is standard for software requirement analysis to enable developers to produce visualization of the system and to potentially identify the artefacts required for the system. UML diagrams will be categorized into two different categories: Structural Diagrams and Behavioural Diagrams.
+
+Behavioural Diagrams
+UML Behavioural Diagrams would illustrate the dynamic concepts and component of the Intermediary System – showing the work flow of each element in the system. Behavioural Diagrams will be used to showcase the functionality of the Intermediary System. Diagrams include Use Case Diagrams, Sequence Diagrams…
+
+The following table will provide an explanation and purpose of each Behavioural Diagram:
+Behavioural Diagram	Purpose
+Use Case Tables and Diagrams	A UML behaviour diagrams used to describe set of action a system can perform in collaboration with external users (actors). It defines how the environment should interact with the users to properly perform its functions. 
+Sequence Diagram	
+	
+
+
+
+
+
+
+
+
+
+The following pages in the report will showcase the behavioural diagrams based on each of the respective function of the Intermediary System.
+
+
+1.	Enforce Strict Governance on Workgroup Management
+
+Use Case Table 1: Enforce Strict Governance on Workgroup Management
+Use Case name	Enforce Strict Governance on Workgroup Management
+Subject Area	Intermediary System
+Business Event	When a workgroup with 1 role owner has been identified
+Actors	Human Resource, Business Owners, IAM Team
+Use Case Overview	Identifies roles with 2 members in their workgroup and 1 member happened to be a mover(transfer) or leaver (termination).  Along with setting a logic (threshold) to spot those roles with no action taken even after a notice was sent and display those roles in the Intermediary System.
+Preconditions	•	Event-based Detection System
+•	Feed files (.txt) containing events from the Event-based Detection System
+•	*A script prepared to identify if the tested access role falls into the condition of having 2 members in the workgroup and a mover(transfer)/leaver(termination) happens to be one of the members.*
+•	A defined threshold set (Number of days no action taken despite warning)
+
+Definition of Workgroup: Each access role is owned by a Business Owners who would appoints members of workgroup which holds the authority to perform operational actions.  
+Termination Outcome	Successful
+
+Event 1: 
+1.	The script will be executed to process the feed file containing events of mover/leaver in user account 
+
+2.	Once script identifies the condition defined above, a notification will be sent to the Business Owner to appoint another member in the workgroup
+
+3.	If still no action taken, and it match the condition (of the number of X days set in threshold to capture access roles with no action taken), the role will be queried and inserted into the Intermediary System database.
+
+4.	The role will be displayed in a table in the webpage of the Intermediary System
+	Unsuccessful
+
+Event 1: 
+1.	Process will be ceased once the script is run due to failure to meet the condition of the script
+
+Event 2: 
+1.	Process will be ceased at the Threshold since it still does not meet the condition set 
+Condition affecting termination outcome	Alternative flow (Unsuccessful Event 1): When the script runs, the results show that the workgroup has none or 2 and above role owners assigned.
+
+Alternative flow (Unsuccessful Event 2): When role have yet to meet the defined X number of days in the Threshold. Role owner still have time to appoint another member in the workgroup 
+
+Normal Flow (Successful Event 1): 
+1.	Access role falls into the condition of having 2 members in the workgroup and a mover(transfer)/leaver(termination) happens to be one of the members 
+2.	Condition meets the condition set in threshold
+
+[If script fails]
+Use Case description	First, the Human Resource (HR) team will provide the feed files containing events (e.g. transfer, termination) of user account.
+
+Second, all of the feed files will be the inputs to the script which does the identifying of roles which meets the above conditions*. 
+
+Third, if condition is met, a notification will be sent to the Business Owner (BO) to appoint another member in the workgroup
+
+Forth, if Business Owner (BO) did not take action to appoint another member to the workgroup and pass the number of days set in the threshold, the respective access role will be queried and inserted into Intermediary System database.
+
+Fifth, the role will then be displayed in the webpage of the Intermediary System
+
+Lastly, the IAM team will make use of the table to do corrective action (action will require approval since impact would be drastic)
+Use Case associations	[Any related usecase]
+Traceability to	Products associated with this use case: 
+•	Event-Based Detection of Staff Movement
+Input summary	Human Resource (HR) team: provide feed files containing event (e.g. transfer, termination)
+Output summary	•	Output is not defined yet (Requires approval since changes might be drastic)
+Usability index	[need to be determined from the Justification Sections of the Business Case]
+Use Case note	
+
+
+
+ 
+Use Case Diagram 1: Enforce Strict Governance on Workgroup Management
+ 
+
+HR Team involvement (not confirm): need to clarify with IAM team
+
+Noticed (and requires clarification)
+-	Use case will be minimal since not much user/actor interaction, usually is system to system interaction
+
+
+
+
+
+
+
+
+
+
+2.	Certification of Role Owners
+
+Use Case Table 2: Certification of Role Owners
+
+Use Case name	Certification of Role Owners
+Subject Area	Intermediary System
+Business Event	(Scheduled? How Often, Clarification needed)
+Actors	Business Owners
+Use Case Overview	Maps the relationship of Business Owner to Assets (queried from IAM Platform) and Assets to Access Roles (queried from IRM Platform) into a single table to provide ease when certifying Role Owners.
+
+Business Owners can only access the roles under the assets that they own and certify those workgroups from the webpage.
+Preconditions	•	Successful querying between IAM platform to IRM Platform.
+
+(Role has to be active (Requestable))
+Termination Outcome	Successful
+
+Event 1:
+1.	Data attributes of respective Business owner tied with the assets they owned will be queried into the database of the Intermediary System
+
+2.	Data attributes of respective Assets tied with their access role will be queried into the database of the Intermediary System
+
+3.	Configuration set on the Intermediary System will conduct a matching (mapping) of Business Owner   Assets   Roles
+
+4.	Mapped attributes from both IAM and IRM platform will be displayed in the webpage of Intermediary System. Business Owner will make use of the displayed data to conduct their certification check
+	Unsuccessful (Abnormally)
+
+Nil
+
+Condition affecting termination outcome	Event 1
+(Successful):
+
+Only if data in IAM and IRM Platform do not contain discrepancy and mapping of attribute is successful	When there is a new Role Owner assigned.
+
+When a Role Owner has been removed from the workgroup	Any discrepancy or bugs in the IAM or IRM platform will lead to snowballing of erroneous data 	Over-simplified or over-complicated query might result in fetching the wrong data.
+Use Case description	Following a scheduled certification exercise, the system will map the relationship of Business Owners to the roles under the assets they own.
+
+The system will then display the names of the Role owners of each respective role of the asset.
+
+The Business Owners will then have to certify the Role owners currently assigned in the workgroups.
+
+In the case where a Role Owner is deemed un-worthy , the Business Owner can remove them from the workgroup.
+
+However, after removing the Role Owner, if the member count of the workgroup falls below 2, the system will notify the Business Owner and prompt them to assign another Role Owner to the workgroup.
+Use Case associations	[Any related usecase]
+Traceability to	Products associated with this use case:
+•	IAM Platform
+•	IRM Platform
+Input summary	Not applicable
+Output summary	List of mapped attributes (Business Owner, Assets, Role) will be displayed in the Intermediary System webpage. 
+Usability index	[need to be determined from the Justification Sections of the Business Case]
+Use Case note	Once a Role Owner is deemed un-worthy, the Business Owner can remove him/her from the workgroup
+
+ 
+Use Case Diagram 2: Certification of Role Owners
+
+ 
+
+Needs more research on how to produce a better diagram: The use case of Certification of Role Owners => involves only system  system. No user/actor input is required.
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+3.	Identifying Dormant Accounts
+
+Use Case Table 3: Identifying Dormant Accounts
+Use Case name	Identifying Dormant Accounts
+Subject Area	Intermediary System
+Business Event	When a dormant account has been identified on an application (How often are the applications checked) 
+Actors	Application OICs, IAM Team, IAM OPS Team
+Use Case Overview	Defining a logic (threshold) to identify dormant accounts in applications
+
+Linking all the applications to the Intermediary System
+
+Defining a template to request the required data from the respective Application OICs.
+
+Preconditions	-	User account existing on application
+
+-	All of the 400+ unique applications must have log in activity of user accounts in their system
+
+-	Login logs (timestamp) of all 400+ unique application must all be using a standardized Event Log format (Common Event Format (CEF) by ArcSight)
+
+-	A defined logic, with a threshold (of the number of X days an account was inactive) must be configured
+
+Termination Outcome	Successful
+
+Event 1: 
+-	Respective Application OICs will access the webpage of Intermediary System and download the “Application Account List” Template.
+
+-	Application OICs will fill up the template with their account list which consist of the following attributes:
+
+ID, Account name, Activity log of user account.
+
+-	Application OICs will upload the filled application account list spreadsheet into the Intermediary System web form.
+
+-	The Intermediary System will feed on the account list data, and selectively for each account login log (timestamp) will be parsed through a logic (threshold) to check for accounts inactivity.
+
+-	Identified dormant accounts, which meets the defined conditions, will be inserted into the database of the Intermediary System.
+
+-	List of dormant accounts will be displayed in the webpage of Intermediary System.	Unsuccessful
+
+Event 1:
+
+-	Application OICs upload a spreadsheet with filled with discrepancy (wrong timestamp format and fields) into the web form of Intermediary System
+
+-	Intermediary System will feed on the spreadsheet and with the wrongly formatted timestamp of users. 
+
+-	Regardless of whether login activity of the user accounts meet or do not meet the condition of the logic (threshold) set, Intermediary System’s application layer would not be able to read the data and make the calculation properly.
+
+-	No users account will be displayed in the webpage of the Intermediary System (dormant accounts were not being identified)
+Condition affecting termination outcome	Event 1 (Successful):
+
+A user account that exists on an application that has the last login/last activity longer than the defined threshold period	Event 1
+(Successful):
+
+Timestamp of log provide by all 400+ application, are standardize (CEF)
+e.g. 19 Aug 00:00:00	Event 1
+(Unsuccessful):
+-	Application OIC did not follow provided template when submitting data, especially wrong timestamp format of user account’s login logs.
+
+
+Use Case description	Application OICs will download the template provided in the webpage of the Intermediary System and filled it up according to the format provided. Application OICs will upload the spreadsheet they filled up, and with the logic (threshold) set in the Intermediary System, Dormant accounts in their applications will be identified and displayed in a table in the webpage of the Intermediary System. IAM Team or IAM OPS Team will then be able identify dormant account in each respective unique application.
+Use Case associations	[Any related usecase]
+Traceability to	Products associated with this use case:
+-	Application systems
+Input summary	Application OICs will be required to upload a spreadsheet filled with their user account list, following the standardized format of the event log provided.
+Output summary	List of identified dormant accounts will be displayed in the webpage of Intermediary System.
+
+However, future approach of post-checking activity requires approval since action taken might be too drastic for change.
+Usability index	[need to be determined from the Justification Sections of the Business Case]
+Use Case note	
+
+
+
+
+
+
+
+
+
+
+Use Case Diagram 3: Identifying Dormant Accounts
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+4.	Automation of Manual Reconciliation 
+
+Use Case Table 4: Automation of Manual Reconciliation
+Use Case name	Automation of Manual Reconciliation
+Subject Area	Intermediary System
+Business Event	When the automated querying identifies a discrepancy in user access to an application.
+Actors	Business Owners, IAM Team, Application OICs
+Use Case Overview	The Intermediary system queries two lists of names. 
+1)	IAM Platform
+2)	Application Side
+
+Both lists must tally, if a name appears on one list but not the other, the Automation of Manual Reconciliation will take place.
+
+When the Application OIC uploads the list of users with access from their side, they can see whether there are any discrepancies when compared to the list from IAM Platform
+
+After displaying, the defined course of action will be taken by the Application OIC to either remove or approve of a user’s access
+Preconditions	User access is present from the application
+and
+User access is not present from IAM Platform
+Or
+User access is not present from the application
+and
+User access is present from the IAM Platform
+ 	Successful
+
+Event 1:
+
+-	Application OICs will download the user list template in webpage of Intermediary System
+
+-	Application OICs will filled up the user list
+
+-	Application OICs uploads the filled-up user list into the web form of Intermediary System
+
+-	Intermediary System will query from IAM platform for the respective application’s user list recorded in IAM platform.
+
+-	Once Application OICs uploads their user lists, application layer (logic) of Intermediary System will do a matching of the count of users 
+
+
+User list uploaded by application OICs =(matching)= User list in IAM platform
+
+Event 1:
+-	Discrepancy will be displayed in a table in the webpage of Intermediary System
+
+Event 2:
+-	No entry will be displayed in the table in the webpage of Intermediary System (since there are no discrepancy found)
+	Unsuccessful
+
+Event 1:
+
+-	Application OICs filled up their user list without downloading and following the format provided
+
+-	Application OICs upload user list into the web form of Intermediary System
+
+-	Intermediary System will query from IAM platform for the respective application’s user list recorded in IAM platform.
+
+-	Once Application OICs uploads their user lists, application layer (logic) of Intermediary System will do matching of users
+
+User list uploaded by application OICs =(matching)= User list in IAM platform
+
+-	Database will produce an error, requesting Application OIC to upload user list following the template format given.
+Condition affecting termination outcome	Event 1:
+Intermediary System successfully identify a discrepancy while matching the user list from both platform	Event 2:
+Intermediary System did not spot any discrepancy in the user list	Event 1(Unsuccessful):
+Application OICs did not use the template provided and submit field which does not correspond to the logic configured at the application layer of Intermediary System. 
+Use Case description	To successfully automate the process of Manual Reconciliation Exercise. Application OICs will be required to download and upload a filled user list spreadsheet into the Intermediary System Platform which would conduct a match check to identify any form of discrepancies between the IAM Platform and Applications.
+Use Case associations	[Any related usecase]
+Traceability to	Products associated with this use case:
+-	IAM Platform: data of user access rights in the respective applications
+-	All manual end-points applications.
+Input summary	Application OICs are required to upload a list filled with their application’s user accounts.
+Output summary	If number of users do not match, list of users with access to an application queried from the application and the IAM Platform respectively will be displayed in the webpage of the Intermediary System. 
+Usability index	[need to be determined from the Justification Sections of the Business Case]
+Use Case note	
+
+
+
+
+
+
+
+
+
+Use Case Diagram 4: Automation of Manual Reconciliation
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+5.	Enhanced Certification Check
+
+Use Case name	Enhanced Certification Check
+Subject Area	Intermediary System
+Business Event	
+Actors	Supervisors
+Use Case Overview	Enhance access certification by attaching an addition field (activity log) of each existing user account. This allow Supervisor to better determine the activeness of a user during certification.
+Preconditions	•	Able to query the user list from IAM Platform
+•	(able to find a way to log activities from all 400+ unique applications)
+ 	Successful
+
+-		Unsuccessful
+Condition affecting termination outcome			
+Use Case description	
+Use Case associations	[Any related usecase]
+Traceability to	Products associated with this use case:
+-	IAM Platform
+Input summary	Not applicable
+Output summary	Supervisors will make use of the user list containing the activity log of each user account displayed in the webpage of Intermediary System for User Certification Exercise.
+Usability index	[need to be determined from the Justification Sections of the Business Case]
+Use Case note	[Are all system of 400+ application windows]
+
+7.	System Design & Research
+7.1 	Format of Event Log
+When timestamps are involved, generated logs from the various type of end points (e.g. Active Directory (AD), Database, LDAP, Manual end points) might produce different type of date-time stamps format. The insistency in event log formats will cause integration of system to become vastly complicated.
+The considering factor when it comes to the formats of event logs will be determined by whether the event contains the relevant key information which will be required during the integration of events.
+
+Common Event Format (CEF)
+To address the issue of inconsistent formatting of event-logs data, the recommended would be to follow an Event Interoperability Standard – Common Event Format (CEF) by ArcSight Inc.. 
+Common Event Format (CEF) provides alignment (prefix) of events to allow event consumers like the Intermediary System to have ease when querying and making use of them. 
+
+Event producer: capable of generating syslog messages
+Common Event Format (CEF) will apply a common prefix to each syslog message, in the format as shown below: 
+Aug 19 17:31:00 host message
+An example of a CEF message using Syslog transport:
+ 
+[Reference properly of ss taken ^ !]
+
+Event producer: incapable of writing syslog messages
+Common Event Format (CEF) will not be able to follow the syslog header. Thus, it will write event logs in a file with the format below:
+CEF:Version|Device Vendor|Device Product|Device Version|Signature ID|Name|Severity|Extension
+
+Common Event Format (CEF) also supports various different date-time format. The following screen capture is extracted from the ArcSight Inc document:
+ 
+[Reference properly of ss taken ^ !]
+
+Note: For more details such as:
+-	definition of the Prefix Fields
+-	character encoding
+-	extension dictionary
+-	Special Mapping (e.g. Firewall, Antivirus, Email, Wireless) 
+Please refer to the weblink of page 6 defined in References.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+8.	Timeline of Project
+
+The approach for the project plan would be adhering to IT industry’s best practices, the AGILE methodology, which is also practiced in GIC. 
+
+AGILE methodology
+
+The AGILE methodology was selected as the choice of approach, compared to other known development methodology, this methodology provides the flexibility to make required changes throughout, even at a later stage of the development. By following the AGILE methodology, customer satisfaction would be assured as deliverables will be produced in smaller parts of the overall project which effectively provide buffer-time for review and corrective adjustments.
+ 
+Note: Duration will be in days/weeks (calendar days), not man days/weeks
+  
+Work Breakdown 	Teammate 	Duration 	Start 	Finish 	Remarks 
+Phase 1 (Initial Requirements and Design)	Total duration in days: 34 days
+Discuss on functions of the Intermediary System and the functions we are going to work on	Both
+	2 days			
+Gather details from the respective personnel who handles the operation/task mentioned in the pain points.		5 days			Seek understanding from them e.g. 
+-	The number of man-hours needed to conduct the entire certification check
+Research and study on how to create a Business Use Case 		1 day			
+Information Gathering (Survey) on the respective details needed to be proposed in the Business Use Case		5 days			Example: 
+-	Cost 
+Conduct feasibility study on the perks of Intermediary System		3 days			
+Building a Business Use Case for the project proposal		5 days			
+Propose and present first draft of Business Use Case to IAM Team		2 days			
+Make necessary corrective changes to the Business Use Case with the feedback gathered from IAM Team		4 days			Might require further research on the lacking details
+Present the 2nd draft of Business Use Case to IAM Team		2 days			
+Approved Business Use Case, will be proposed to the higher-ups for approval		5 days			
+Phase 2 (System Design)	Total duration in days: 23 days
+Research on the most suitable programming language for the Front-end, application layer, Back-end of the Intermediary System		2 days			
+Research on a development methodology to ensure consistency of codes.		1 day			
+Review the comparison results of the researches, and select the most suitable choice of system design		2 days			
+Present and propose results of research to IAM Team		2 days			
+Information gathering about the security implication and guidelines when implementing a new system in GIC		2 days			
+Creation of ER diagram designs		5 days			
+Design of Front-end of Intermediary System		5 days			
+Work on a proposed report to address the design of system with security consideration  		3 days			
+Propose the design + security report to the IAM Team for approval		1 day			
+Phase 3 (Implementation)	Total duration in days: 55 days
+Test the querying function of the intermediary system from the web-app UI and make necessary debugging		10 days			
+Start building automation system to identify roles from IAM Platform with 1 or less Role Owners in workgroups		15 days			
+Start integrating the database of IAM Platform (Offline copy of database) to the Intermediary System		10 days			
+Start designing and developing the UI of the Intermediary System		10 days			
+Start connecting the back-end automation system codes to the Intermediary System UI codes		10 days			
+Documentation on the production		Constant			
+Phase 4 (Verification)	Total duration in days: 10 days
+Connect the debugged version of the intermediary system to the live IAM Platform Database		5 days			
+Conduct a User Acceptance Test on the newly implemented Intermediary System to gather feedbacks from the target users of the platform for corrective changes and improvements		5 days			
+Phase 5 (Maintenance)	Total duration in days: 15 days
+Create a support framework to address any discrepancy found or experienced in the Intermediary System		5 days			Implemented with Below
+Implement a FAQ, help forum, Query Bot to address users concerns		5 days			Implemented with Above
+Create/Revamp SOP to address the steps for various operation which the Intermediary System can assist in		5 days			
+
+9.	Budget
+ 
+10.	Stakeholders/Beneficiaries:
+
+Beneficiaries
+The following are the key beneficiaries based on the functions of the Intermediary System.
+Functions	Beneficiaries 
+Enforce strict governance on workgroup management	Business Owners, IAM Team
+Certification of Role Owners 	Business Owners
+Identifying Dormant Accounts	IAM team and IAM OPS team
+Automation of Manual Reconciliation 	Business Owner, Estelle, Ong Pei Lin, Application OICs
+Enhanced Access Certification	Supervisors  
+
+Stakeholders
+Internal Stakeholder:
+
+External Stakeholder:
+
+
+11.	Key Personnel
+
+Team	Randy, Jerome
+
+
+12.	Endorsements
+
+Felicia Tan - IAM (CSITR)
+GIC Private Limited | 168 Robinson Road #35-01, Capital Tower, Singapore 068912 
+|+65 6889 8540 |+65 9647 0702 |  feliciatan@gic.com.sg
+
+
+Signature: 			                 Date:  			
+
+Felicia & IAM Team 
+
+10. Appendix
+
+
+
+
+11. Terms & Terminology
+Manual Reconciliation Exercise: An exercise conducted quarter annually to perform manual checks to ensure user’s access rights to applications are in-sync with the IAM Platform. This exercise will only be required for applications that are integrated with the IAM Platform in a manual way which accesses have to be provisioned or de-provisioned manually.
+Dormant accounts: Accounts which hold accesses but have yet to login for a period of time (longer than the defined threshold of X number of days)
+
+ 
+
+13.	References
+
+Common Event Format: https://kc.mcafee.com/resources/sites/MCAFEE/content/live/CORP_KNOWLEDGEBASE/78000/KB78712/en_US/CEF_White_Paper_20100722.pdf
+
+
